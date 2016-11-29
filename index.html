@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Chinese ID card</title>
+</head>
+<body>
+	
+
+	<script src="idcard.js"></script>
+	<script>
+		//Get an Chinese ID card number
+		var id_card_number = _$id.getCardNumber();
+
+		document.write(id_card_number);
+
+		//check the card number if correct
+		var card_ok = _$id.checkCardNumber(id_card_number);
+
+		console.log(card_ok);//true
+	</script>
+</body>
+</html>
