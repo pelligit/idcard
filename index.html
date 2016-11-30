@@ -3,16 +3,63 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Chinese ID card</title>
+	<style>
+		body{
+			font-family: 微软雅黑;
+		}
+		input{
+			margin: 5px;
+			outline: none;
+		}
+		button{
+			margin: 5px;
+			outline: none;
+			border: none;
+			line-height: 20px;
+		}
+		hr{
+			border: solid 1px #ccc;
+			border-top: none;
+		}
+	</style>
 </head>
 <body>
-	
+
+	<button id="get_number">Get an ID card number</button>
+	<br />
+	<span>Show ID card:</span><input type="text" id="show_number" placeholder="click the button and here will show your result">
+	<br />
+	<hr />
+	<input type="text" id="input_number" placeholder="Input a number to check">
+	<br />
+	<button id="check_number">Check a number</button>
+	<br />
+	<div id="show_result">Show result here</div>
 
 	<script src="idcard.js"></script>
 	<script>
+		var get_btn = document.getElementById("get_number");
+		var check_btn = document.getElementById("check_number");
+
+		var show_number = document.getElementById("show_number");
+		var input_number = document.getElementById("input_number");
+
+		var show_result = document.getElementById("show_result");
+
+		get_btn.addEventListener("click",function(event){
+			show_number.value = _$id.getCardNumber();
+		});
+
+		check_btn.addEventListener("click",function(event){
+			var number_value = input_number.value;
+			show_result.innerHTML = _$id.checkCardNumber(number_value + "");
+		});
+
+		// ---------------------------------------------------------------------
 		//Get an Chinese ID card number
 		var id_card_number = _$id.getCardNumber();
 
-		document.write(id_card_number);
+		// document.write(id_card_number);
 
 		//check the card number if correct
 		var card_ok = _$id.checkCardNumber(id_card_number);
